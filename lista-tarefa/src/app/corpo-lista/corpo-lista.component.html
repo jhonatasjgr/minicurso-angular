@@ -1,0 +1,46 @@
+<div class="container">
+  <div class="header">
+    <form class="example-form">
+      <mat-form-field class="example-full-width">
+        <mat-label>Tarefa:</mat-label>
+        <input name="texto" matInput placeholder="Atividade de Algoritmos" [(ngModel)]="texto">
+      </mat-form-field>
+      <button mat-flat-button (click)="adicionar()">Adicionar Tarefa</button>
+    </form>
+  </div>
+  <hr>
+  <div class="body">
+    <h6>Tarefas não concluidas</h6>
+    @for(tarefa of listaTarefas;track tarefa){
+    <div class="lista">
+      <span>{{tarefa.texto}}</span>
+      <span>
+        <button mat-fab (click)="concluir(tarefa.id)">
+          <mat-icon>check</mat-icon>
+        </button>
+        <button mat-fab (click)="excluir(tarefa.id)">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </span>
+    </div>
+    <hr>
+    }@empty {
+    <span>Ainda não há tarefas</span>
+    }
+    <hr>
+    <h6>Tarefas Feitas</h6>
+    @for(tarefa of listaTarefasFeitas;track tarefa){
+    <div class="lista">
+      <span>{{tarefa.texto}}</span>
+      <span>
+        <button mat-fab (click)="excluir(tarefa.id)">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </span>
+    </div>
+    <hr>
+    }@empty {
+    <span>Ainda não há tarefas feitas</span>
+    }
+  </div>
+</div>
